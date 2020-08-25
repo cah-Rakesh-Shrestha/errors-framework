@@ -1,0 +1,16 @@
+{
+    "name": "errors-framework",
+    "version": "1.0.0",
+    "description": "",
+    "main": "errors.js",
+    "private": true,
+    "scripts": {
+        "test": "jest"
+    },
+    "author": "Piyush Ramavat",
+    "license": "UNLICENSED",
+    "devDependencies": {
+        "@babel/runtime": "7.4.5",
+        "typescript": "^3.7.2"
+    }
+}
