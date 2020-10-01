@@ -161,14 +161,14 @@ export class OpError extends BaseError {
      */
     constructor(componentName: string, opName: string, details?: any, debugInfo?: any) {
         super(ErrorType.operation, details, debugInfo);
+        Object.setPrototypeOf(this, OpError.prototype);
+
         this.opName = opName;
         this.componentName = componentName;
     }
 
     get headline() {
-        return `Internal operation "${this.componentName}.${
-            this.opName
-            }()" failed`;
+        return `Internal operation "${this.componentName}.${this.opName}()" failed`;
     }
 }
 
@@ -187,14 +187,14 @@ export class NoOpError extends BaseError {
      */
     constructor(componentName: string, opName: string, details?: any, debugInfo?: any) {
         super(ErrorType.noOp, details, debugInfo);
+        Object.setPrototypeOf(this, NoOpError.prototype);
+
         this.opName = opName;
         this.componentName = componentName;
     }
 
     get headline() {
-        return `Internal operation "${this.componentName}.${
-            this.opName
-            }()" failed`;
+        return `Internal operation "${this.componentName}.${this.opName}()" failed`;
     }
 }
 
@@ -206,6 +206,8 @@ export class RuleViolationError extends BaseError {
 
     constructor(rule: string, details?: any, debugInfo?: any) {
         super(ErrorType.rule, details, debugInfo);
+        Object.setPrototypeOf(this, RuleViolationError.prototype);
+
         this.rule = rule;
     }
 
@@ -222,6 +224,8 @@ export class SecurityRuleViolation extends BaseError {
 
     constructor(rule: string, details?: any, debugInfo?: any) {
         super(ErrorType.security, details, debugInfo);
+        Object.setPrototypeOf(this, SecurityRuleViolation.prototype);
+
         this.rule = rule;
     }
 
@@ -243,6 +247,8 @@ export class APICallError extends BaseError {
 
     constructor(service: string, endpoint: string, details?: any) {
         super(ErrorType.apiCall, details);
+        Object.setPrototypeOf(this, APICallError.prototype);
+
         this.service = service;
         this.endpoint = endpoint;
     }
@@ -270,6 +276,8 @@ export class ConnectionError extends BaseError {
 
     constructor(connectionType: ConnectionType, details?: any, debugInfo?: any) {
         super(ErrorType.connection, details, debugInfo);
+        Object.setPrototypeOf(this, ConnectionError.prototype);
+
         this.connectionType = connectionType;
     }
 }
@@ -284,6 +292,8 @@ export class NotImplementedError extends BaseError {
 
     constructor() {
         super(ErrorType.operation);
+        Object.setPrototypeOf(this, NotImplementedError.prototype);
+
     }
 }
 
@@ -368,13 +378,13 @@ export class UserError extends BaseError {
     readonly category: UserErrorCategory;
 
     get headline() {
-        return `User error "${this.type}"${
-            this.details ? " " + this.details.toString() : ""
+        return `User error "${this.type}"${this.details ? " " + this.details.toString() : ""
             }`;
     }
 
     constructor(category: UserErrorCategory, details?: any, debugInfo?: any) {
         super(ErrorType.user, details, debugInfo);
+        Object.setPrototypeOf(this, UserError.prototype);
         this.category = category;
     }
 }
@@ -396,9 +406,7 @@ export class DeviceOpError extends BaseError {
     readonly appVersion?: string;
 
     get headline() {
-        return `Device operation error "${this.type}"${
-            this.details ? " " + this.details.toString() : ""
-            }`;
+        return `Device operation error "${this.type}"${this.details ? " " + this.details.toString() : ""}`;
     }
 
     constructor(
@@ -410,6 +418,8 @@ export class DeviceOpError extends BaseError {
         debugInfo?: any
     ) {
         super(ErrorType.deviceOp, details, debugInfo);
+        Object.setPrototypeOf(this, DeviceOpError.prototype);
+
         this.componentName = componentName;
         this.opName = opName;
         this.deviceOS = deviceOS;
@@ -422,6 +432,8 @@ export class DeviceOpError extends BaseError {
 export class UnhandledRejection extends BaseError {
     constructor(promise: Promise<any>, error: any) {
         super(ErrorType.unhandledRejection, error);
+        Object.setPrototypeOf(this, UnhandledRejection.prototype);
+
     }
 
     get headline() {
@@ -435,6 +447,8 @@ export class UnhandledRejection extends BaseError {
 export class UncaughtException extends BaseError {
     constructor(error: any) {
         super(ErrorType.uncaughtException, error);
+        Object.setPrototypeOf(this, UncaughtException.prototype);
+
     }
 
     get headline() {

@@ -1,6 +1,6 @@
 {
     "name": "errors-framework",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "",
     "main": "errors.js",
     "private": true,
