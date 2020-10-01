@@ -306,6 +306,7 @@ export enum UserErrorCategory {
     priorAccountWithEmail = "priorAccountWithEmail",
     priorAccountWithTelecom = "priorAccountWithTelecom",
     authTokenExpired = "authTokenExpired",
+    invalidAuthToken = "invalidAuthToken",
     invalidData = "invalidData",
     insufficientPermissions = "insufficientPermissions",
     external = "externalError",
