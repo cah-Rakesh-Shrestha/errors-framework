@@ -166,9 +166,7 @@ export class OpError extends BaseError {
     }
 
     get headline() {
-        return `Internal operation "${this.componentName}.${
-            this.opName
-            }()" failed`;
+        return `Internal operation "${this.componentName}.${this.opName}()" failed`;
     }
 }
 
@@ -192,9 +190,7 @@ export class NoOpError extends BaseError {
     }
 
     get headline() {
-        return `Internal operation "${this.componentName}.${
-            this.opName
-            }()" failed`;
+        return `Internal operation "${this.componentName}.${this.opName}()" failed`;
     }
 }
 
@@ -296,6 +292,7 @@ export enum UserErrorCategory {
     priorAccountWithEmail = "priorAccountWithEmail",
     priorAccountWithTelecom = "priorAccountWithTelecom",
     authTokenExpired = "authTokenExpired",
+    invalidAuthToken = "invalidAuthToken",
     invalidData = "invalidData",
     insufficientPermissions = "insufficientPermissions",
     external = "externalError",
@@ -368,9 +365,7 @@ export class UserError extends BaseError {
     readonly category: UserErrorCategory;
 
     get headline() {
-        return `User error "${this.type}"${
-            this.details ? " " + this.details.toString() : ""
-            }`;
+        return `User error "${this.type}"${this.details ? " " + this.details.toString() : ""}`;
     }
 
     constructor(category: UserErrorCategory, details?: any, debugInfo?: any) {
@@ -396,9 +391,7 @@ export class DeviceOpError extends BaseError {
     readonly appVersion?: string;
 
     get headline() {
-        return `Device operation error "${this.type}"${
-            this.details ? " " + this.details.toString() : ""
-            }`;
+        return `Device operation error "${this.type}"${this.details ? " " + this.details.toString() : ""}`;
     }
 
     constructor(
