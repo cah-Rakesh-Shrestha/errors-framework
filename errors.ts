@@ -355,7 +355,8 @@ export enum SecurityErrorCategory {
     scheduleRuleCreateNotPermitted = "scheduleRuleCreateNotPermitted",
     responderDoesNotExist = "responderDoesNotExist",
     responderConfigDoesNotExist = "responderConfigDoesNotExist",
-    pharmacyUpdateByPatientNotPermitted = "pharmacyUpdateByPatientNotPermitted"
+    pharmacyUpdateByPatientNotPermitted = "pharmacyUpdateByPatientNotPermitted",
+    userDoesNotBelongToOrganisation = "userDoesNotBelongToOrganisation"
 }
 
 /** use for error scenarios related to workflows, eg when rx fill fails */
