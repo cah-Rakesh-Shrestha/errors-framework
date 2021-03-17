@@ -379,8 +379,7 @@ export class UserError extends BaseError {
     readonly category: UserErrorCategory;
 
     get headline() {
-        return `User error "${this.type}"${this.details ? " " + this.details.toString() : ""
-            }`;
+        return `User error "${this.type}"${this.details ? " " + this.details.toString() : ""}`;
     }
 
     constructor(category: UserErrorCategory, details?: any, debugInfo?: any) {
