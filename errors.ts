@@ -117,7 +117,7 @@ export abstract class BaseError extends Error implements IBaseError {
         }
     }
 
-    private static generateRef() {
+    static generateRef() {
         let ref = "";
         const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         for (var i = 0; i < 3; i++)
