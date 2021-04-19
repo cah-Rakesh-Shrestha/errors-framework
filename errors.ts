@@ -356,7 +356,8 @@ export enum SecurityErrorCategory {
     responderDoesNotExist = "responderDoesNotExist",
     responderConfigDoesNotExist = "responderConfigDoesNotExist",
     pharmacyUpdateByPatientNotPermitted = "pharmacyUpdateByPatientNotPermitted",
-    userDoesNotBelongToOrganisation = "userDoesNotBelongToOrganisation"
+    userDoesNotBelongToOrganisation = "userDoesNotBelongToOrganisation",
+    redeemRxDownloadTokenValidation = "redeemRxDownloadTokenValidation"
 }
 
 /** use for error scenarios related to workflows, eg when rx fill fails */
