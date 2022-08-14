@@ -159,7 +159,13 @@ export class OpError extends BaseError {
 export class ServiceError<N, C> extends BaseError {
     readonly errorConfig: ErrorConfig<N, C>;
 
-    constructor(errorConfig: ErrorConfig<N, C>, debugInfo?: any) {
+    constructor(errorConfig: ErrorConfig<N, C>, debugInfo?: any , opName?:string, details?: string) {
+
+        if(errorConfig.code === 62344 || errorConfig.code === 6008 || errorConfig.code === 6009){
+            errorConfig.message = errorConfig.message.replace("{operation}",opName || '');
+            errorConfig.message = errorConfig.message.replace("{details}",details || '');
+        }
+
         super(ErrorType.service, errorConfig, debugInfo);
         Object.setPrototypeOf(this, ServiceError.prototype);
         this.errorConfig = errorConfig;
