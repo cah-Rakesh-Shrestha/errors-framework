@@ -123,7 +123,11 @@ exports.OpError = OpError;
  * Throw instances of this class to indicate error occured in service.
  */
 class ServiceError extends BaseError {
-    constructor(errorConfig, debugInfo) {
+    constructor(errorConfig, debugInfo, opName = undefined, details = undefined) {
+
+        errorConfig.message = errorConfig.message.replace("{operation}", opName || '');
+        errorConfig.message = errorConfig.message.replace("{details}", details || '');
+
         super(error_entities_1.ErrorType.service, errorConfig, debugInfo);
         Object.setPrototypeOf(this, ServiceError.prototype);
         this.errorConfig = errorConfig;
