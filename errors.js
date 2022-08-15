@@ -124,10 +124,6 @@ exports.OpError = OpError;
  */
 class ServiceError extends BaseError {
     constructor(errorConfig, debugInfo) {
-        if(errorConfig.code === 62344 || errorConfig.code === 6008 || errorConfig.code === 6009){
-            errorConfig.message = errorConfig.message.replace("{operation}",opName || '');
-            errorConfig.message = errorConfig.message.replace("{details}",details || '');
-        }
         super(error_entities_1.ErrorType.service, errorConfig, debugInfo);
         Object.setPrototypeOf(this, ServiceError.prototype);
         this.errorConfig = errorConfig;
