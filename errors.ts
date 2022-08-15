@@ -159,11 +159,7 @@ export class OpError extends BaseError {
 export class ServiceError<N, C> extends BaseError {
     readonly errorConfig: ErrorConfig<N, C>;
 
-    constructor(errorConfig: ErrorConfig<N, C>, debugInfo?: any,opName?: string, details?: string) {
-
-        errorConfig.message = errorConfig.message.replace("{operation}",opName || '');
-        errorConfig.message = errorConfig.message.replace("{details}",details || '');
-
+    constructor(errorConfig: ErrorConfig<N, C>, debugInfo?: any) {
         super(ErrorType.service, errorConfig, debugInfo);
         Object.setPrototypeOf(this, ServiceError.prototype);
         this.errorConfig = errorConfig;
@@ -171,6 +167,13 @@ export class ServiceError<N, C> extends BaseError {
 
     get headline() {
         return `Service error: "${this.errorConfig.message}`;
+    }
+
+    static formatMessage(message:string,values: {
+        operation?: string,
+        details?: string
+    }) {
+        return message.replace("{operation}",values.operation || '').replace("{details}",values.details || '');
     }
 }
 
