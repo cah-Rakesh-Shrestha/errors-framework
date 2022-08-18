@@ -163,10 +163,34 @@ export class ServiceError<N, C> extends BaseError {
         super(ErrorType.service, errorConfig, debugInfo);
         Object.setPrototypeOf(this, ServiceError.prototype);
         this.errorConfig = errorConfig;
+
+        if(debugInfo && errorConfig.message) {
+            this.errorConfig.message = ServiceError.formatMessage(this.errorConfig.message, debugInfo);
+        }
     }
 
     get headline() {
         return `Service error: "${this.errorConfig.message}`;
+    }
+
+    static formatMessage(message: string, values?: any) {
+        let parts: any = [];
+    
+        if (values) {
+          Object.keys(values).forEach(key => {
+            if (typeof values[key] === 'function') {
+              let idx = 0;
+              parts = message
+                .split(`{${key}}`)
+                .map(p => (p.length ? p : values[key]()))
+                .map(p => p);
+            } else if (typeof values[key] !== 'object') {
+              message = message.replace(RegExp(`{${key}}`, 'g'), values[key]);
+            }
+          });
+        }
+    
+        return parts.length ? parts : message;
     }
 }
 

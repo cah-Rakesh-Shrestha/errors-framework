@@ -127,9 +127,33 @@ class ServiceError extends BaseError {
         super(error_entities_1.ErrorType.service, errorConfig, debugInfo);
         Object.setPrototypeOf(this, ServiceError.prototype);
         this.errorConfig = errorConfig;
+
+        if(debugInfo && errorConfig.message) {
+            this.errorConfig.message = ServiceError.formatMessage(this.errorConfig.message, debugInfo);
+        }
     }
     get headline() {
         return `Service error: "${this.errorConfig.message}`;
+    }
+
+    static formatMessage(message, values) {
+        let parts = [];
+    
+        if (values) {
+          Object.keys(values).forEach(key => {
+            if (typeof values[key] === 'function') {
+              let idx = 0;
+              parts = message
+                .split(`{${key}}`)
+                .map(p => (p.length ? p : values[key]()))
+                .map(p => p);
+            } else if (typeof values[key] !== 'object') {
+              message = message.replace(RegExp(`{${key}}`, 'g'), values[key]);
+            }
+          });
+        }
+    
+        return parts.length ? parts : message;
     }
 }
 exports.ServiceError = ServiceError;
