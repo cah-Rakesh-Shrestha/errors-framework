@@ -139,6 +139,10 @@ class ServiceError extends BaseError {
     static formatMessage(message, values) {
         let parts = [];
     
+        if(typeof values === 'string') {
+            return message;
+        }
+
         if (values) {
           Object.keys(values).forEach(key => {
             if (typeof values[key] === 'function') {

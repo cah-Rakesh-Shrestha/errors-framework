@@ -176,6 +176,10 @@ export class ServiceError<N, C> extends BaseError {
     static formatMessage(message: string, values?: any) {
         let parts: any = [];
     
+        if(typeof values === 'string') {
+            return message;
+        }
+
         if (values) {
           Object.keys(values).forEach(key => {
             if (typeof values[key] === 'function') {
