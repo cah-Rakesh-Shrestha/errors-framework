@@ -164,7 +164,7 @@ export class ServiceError<N, C> extends BaseError {
         Object.setPrototypeOf(this, ServiceError.prototype);
         this.errorConfig = errorConfig;
 
-        if(debugInfo && errorConfig.message) {
+        if(debugInfo && errorConfig.message && typeof debugInfo === 'object' ) {
             this.errorConfig.message = ServiceError.formatMessage(this.errorConfig.message, debugInfo);
         }
     }
@@ -175,10 +175,6 @@ export class ServiceError<N, C> extends BaseError {
 
     static formatMessage(message: string, values?: any) {
         let parts: any = [];
-    
-        if(typeof values === 'string') {
-            return message;
-        }
 
         if (values) {
           Object.keys(values).forEach(key => {
